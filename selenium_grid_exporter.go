@@ -4,7 +4,8 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
+	"io"
+	"log"
 	"net/http"
 	"strings"
 	"sync"
@@ -12,7 +13,6 @@ import (
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/prometheus/common/log"
 )
 
 const (
@@ -44,7 +44,7 @@ type hubResponse struct {
 }
 
 func NewExporter(uri string) *Exporter {
-	log.Infoln("Collecting data from:", uri)
+	log.Println("Collecting data from:", uri)
 
 	return &Exporter{
 		URI: uri,
@@ -115,7 +115,7 @@ func (e *Exporter) scrape() {
 	if err != nil {
 		e.up.Set(0)
 
-		log.Errorf("Can't scrape Selenium Grid: %v", err)
+		log.Printf("Can't scrape Selenium Grid: %v", err)
 		return
 	}
 
@@ -125,7 +125,7 @@ func (e *Exporter) scrape() {
 
 	if err := json.Unmarshal(body, &hResponse); err != nil {
 
-		log.Errorf("Can't decode Selenium Grid response: %v", err)
+		log.Printf("Can't decode Selenium Grid response: %v", err)
 		return
 	}
 	e.totalSlots.Set(hResponse.Data.Grid.TotalSlots)
@@ -161,7 +161,7 @@ func (e Exporter) fetch() (output []byte, err error) {
 	}
 	defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 
 	//s := string(body)
 	//fmt.Println(s)
@@ -171,7 +171,7 @@ func (e Exporter) fetch() (output []byte, err error) {
 func main() {
 	flag.Parse()
 
-	log.Infoln("Starting selenium_grid_exporter")
+	log.Println("Starting selenium_grid_exporter")
 
 	prometheus.MustRegister(NewExporter(*scrapeURI))
 	prometheus.Unregister(prometheus.NewGoCollector())
