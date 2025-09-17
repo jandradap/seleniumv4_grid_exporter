@@ -22,7 +22,7 @@ groups:
       description: "Selenium grid http://uiplinfdoc040.ipswich.mgsops.net:4444/ went offline!"
 
   - alert: SeleniumGridPendingSessions
-    expr: selenium_grid_hub_sessions_backlog > 0
+    expr: selenium_grid_hub_sessionQueueSize > 0
     for: 5s
     labels:
       severity: page

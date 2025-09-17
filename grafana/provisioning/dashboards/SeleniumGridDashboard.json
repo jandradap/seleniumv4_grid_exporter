@@ -177,7 +177,7 @@
       "pluginVersion": "7.3.1",
       "targets": [
         {
-          "expr": "selenium_grid_hub_sessions_backlog",
+          "expr": "selenium_grid_hub_sessionQueueSize",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
