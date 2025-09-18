@@ -134,7 +134,7 @@ func (e *Exporter) scrape() {
 	e.sessionQueueSize.Set(hResponse.Data.Grid.SessionQueueSize)
 }
 
-func (e Exporter) fetch() (output []byte, err error) {
+func (e *Exporter) fetch() (output []byte, err error) {
 
 	url := (e.URI + "/graphql")
 	method := "POST"
