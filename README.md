@@ -21,9 +21,18 @@ Usage of /selenium_grid_exporter:
   - run docker-compose -f docker-compose.yml up
   - open grafana at localhost:3000 (admin/foobar)
   - open Dashboards -> Manage -> Selenium4 Grid monitoring
-  
+
 ```
   ![Screenshot](selenium4_grafana.png)
+
+## Container versions
+
+The example stack uses the following container images:
+
+- Runtime image: `busybox:1.36.1`
+- Selenium Hub and browser nodes: `selenium/hub:4.21.0`, `selenium/node-chrome:4.21.0`, `selenium/node-firefox:4.21.0`, `selenium/node-opera:4.21.0`
+- Prometheus server: `prom/prometheus:v2.53.0`
+- Grafana: `grafana/grafana:11.0.0`
 
 ## Metrics
 
