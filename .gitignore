@@ -1,2 +1,51 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# Editor directories and files
 .idea/
+.vscode/
+*.swp
+*.swo
+
+# Go build artifacts
 selenium_grid_exporter
+seleniumv4_grid_exporter
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+coverage.out
+*.coverprofile
+
+# Build directories
+bin/
+build/
+dist/
+release/
+out/
+tmp/
+
+# Docker / container runtime data
+prometheus/data/
+alertmanager/data/
+grafana/data/
+grafana/logs/
+grafana/plugins/
+
+# Dependency or package manager caches
+vendor.tmp/
+node_modules/
+
+# Local environment overrides
+.env
+.env.local
+*.local.yaml
+*.local.yml
+*.local.json
+
